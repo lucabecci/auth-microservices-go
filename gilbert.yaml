@@ -19,3 +19,10 @@ tasks:
       action: shell
       params:
         command: "rm -rf {{build_dir}}"
+
+  exec:
+    - if: "[ -d {{ build_dir }} ]"
+      description: "start program"
+      action: shell
+      params:
+        command: "build/server"
