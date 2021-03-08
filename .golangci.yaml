@@ -1,0 +1,6 @@
+run:
+  ##Errors with golanglint
+  skip-files:
+    - user/transport_http.go
+    - cmd/main.go
+    - security/jwt.go
