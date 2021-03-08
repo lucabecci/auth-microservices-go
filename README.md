@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Auth microservices</h1>
-  <p>Simple microservice for test jwt with go kit and services structure. This microservice use gilbert for task manager where the developer can use a gilbert command for the build. The service use Mux, Go Kit, JWT-Go, Docker, Github Actions, Testify and Gilber.</p>
+  <p>Simple microservice for test jwt with go kit and services structure. This microservice use gilbert for task manager where the developer can use a gilbert command for the build. The service use Mux, Go Kit, JWT-Go, Docker, Github Actions, Testify and Gilbert.</p>
 </div>
 
 # Quick Start ⌨️
