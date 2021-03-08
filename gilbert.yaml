@@ -1,0 +1,21 @@
+version: "1.0"
+vars:
+  app_version: 1.0.0
+  build_dir: "{{PROJECT}}/build"
+  server_dir: "./cmd"
+tasks:
+  build:
+    - description: Build project
+      action: build
+      params:
+        source: "{{server_dir}}"
+        outputPath: "{{build_dir}}/server"
+        variables:
+          "main.version": "{{app_version}}"
+
+  clean:
+    - if: "[ -d {{ build_dir }} ]"
+      description: "clean build directory"
+      action: shell
+      params:
+        command: "rm -rf {{build_dir}}"
