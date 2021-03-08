@@ -36,7 +36,7 @@ func MakeValidateUserEndpoint(svc Service) endpoint.Endpoint {
 	}
 }
 
-func MakeValidateToken(svc Service) endpoint.Endpoint {
+func MakeValidateTokenEndpoint(svc Service) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
 		req := request.(ValidateTokenRequest)
 		email, err := svc.ValidateToken(ctx, req.Token)
