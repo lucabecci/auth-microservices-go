@@ -10,7 +10,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-func newHTTPServer(svc Service, logger log.Logger) *mux.Router {
+func NewHTTPServer(svc Service, logger log.Logger) *mux.Router {
 	options := []httptransport.ServerOption{
 		httptransport.ServerErrorLogger(logger),
 		httptransport.ServerErrorEncoder(encodeErrorResponse),
