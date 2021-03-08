@@ -6,43 +6,43 @@ import (
 	"github.com/go-kit/kit/endpoint"
 )
 
-type validateUserRequest struct {
+type ValidateUserRequest struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
 
-type validateUserResponse struct {
+type ValidateUserResponse struct {
 	Token string `json:"token,omitempty"`
 	Err   string `json:"err,omitempty"`
 }
 
-type validateTokenRequest struct {
+type ValidateTokenRequest struct {
 	Token string `json:"token"`
 }
 
-type validateTokenResponse struct {
+type ValidateTokenResponse struct {
 	Email string `json:"email,omitempty"`
 	Err   string `json:"err,omitempty"`
 }
 
-func makeValidateUserEndpoint(svc Service) endpoint.Endpoint {
+func MakeValidateUserEndpoint(svc Service) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
-		req := request.(validateUserRequest)
+		req := request.(ValidateUserRequest)
 		token, err := svc.ValidateUser(ctx, req.Email, req.Password)
 		if err != nil {
-			return validateUserResponse{"", err.Error()}, err
+			return ValidateUserResponse{"", err.Error()}, err
 		}
-		return validateUserRequest{token, ""}, nil
+		return ValidateUserRequest{token, ""}, nil
 	}
 }
 
-func makeValidateToken(svc Service) endpoint.Endpoint {
+func MakeValidateToken(svc Service) endpoint.Endpoint {
 	return func(ctx context.Context, request interface{}) (interface{}, error) {
-		req := request.(validateTokenRequest)
+		req := request.(ValidateTokenRequest)
 		email, err := svc.ValidateToken(ctx, req.Token)
 		if err != nil {
-			return validateTokenResponse{"", err.Error()}, err
+			return ValidateTokenResponse{"", err.Error()}, err
 		}
-		return validateTokenResponse{email, ""}, nil
+		return ValidateTokenResponse{email, ""}, nil
 	}
 }

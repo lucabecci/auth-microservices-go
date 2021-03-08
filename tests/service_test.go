@@ -13,7 +13,7 @@ func TestValidateTest(t *testing.T) {
 	t.Run("invalid user", func(t *testing.T) {
 		_, err := service.ValidateUser(context.Background(), "bad@test.com", "bad")
 		assert.NotNil(t, err)
-		assert.Equal(t, "User, invalid", err.Error())
+		assert.Equal(t, "User invalid", err.Error())
 	})
 	t.Run("valid user", func(t *testing.T) {
 		token, err := service.ValidateUser(context.Background(), "test@test.com", "test")
