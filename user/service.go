@@ -3,6 +3,8 @@ package user
 import (
 	"context"
 	"errors"
+
+	"github.com/lucabecci/auth-microservices-go/security"
 )
 
 type Service interface {
@@ -26,24 +28,23 @@ func (s *service) ValidateUser(ctx context.Context, email string, password strin
 		return "nil", ErrInvalidUser
 	}
 
-	// token, err := security.NewToken(email)
-	// if err != nil {
-	//     return "", err
-	// }
+	token, err := security.NewToken(email)
+	if err != nil {
+		return "", err
+	}
 
-	return "", nil
+	return token, nil
 }
 
 func (s *service) ValidateToken(ctx context.Context, token string) (string, error) {
-	// t, err := security.ParseToken(token)
-	// if err != nil {
-	// 	return "", ErrInvalidToken
-	// }
+	t, err := security.ParseToken(token)
+	if err != nil {
+		return "", ErrInvalidToken
+	}
 
-	// tData, err := security.GetClaims(t)
-	// if err != nil {
-	// 	return "", ErrInvalidToken
-	// }
-	// return tData["email"].(string), nil
-	return "", nil
+	tData, err := security.GetClaims(t)
+	if err != nil {
+		return "", ErrInvalidToken
+	}
+	return tData["email"].(string), nil
 }
